@@ -3,9 +3,9 @@
     "name": "Aldente_POS",
     "slug": "Aldente_POS",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "default",
     "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
+    "scheme": "aldente_pos",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
