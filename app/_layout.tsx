@@ -1,9 +1,11 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
+import {Text, StyleSheete} from 'react-native';
 import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
+import { StatusBar } from "expo-status-bar";
 
 import { useColorScheme } from '@/hooks/useColorScheme';
 
@@ -28,10 +30,13 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+      <Text>Header</Text>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="profile"/>
         <Stack.Screen name="+not-found" />
       </Stack>
+      <Text>Footer</Text>
     </ThemeProvider>
   );
 }
