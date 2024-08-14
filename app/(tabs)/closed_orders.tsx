@@ -1,14 +1,16 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
 
-export default class closed_orders extends Component {
-  render() {
+const closedOrders = () => {
     return (
-      <View>
-        <Text> textInComponent </Text>
-      </View>
+        <View className="flex-1 items-center justify-center bg-white">
+            <Text className="text-2xl">Closed Orders</Text>
+        </View>
     )
-  }
 }
 
-const styles = StyleSheet.create({})
+export default closedOrders
+
+const styles = StyleSheet.create({
+    
+})
