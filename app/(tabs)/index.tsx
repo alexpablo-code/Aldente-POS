@@ -1,6 +1,6 @@
 import {ScrollView, View, Text, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { Link } from 'expo-router';
+import { Link, Redirect, router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { images } from '../../constants';
 import CustomButton from '@/components/CustomButton';
@@ -8,11 +8,11 @@ import CustomButton from '@/components/CustomButton';
 export default function HomeScreen() {
   return (
     <SafeAreaView className='bg-primary h-full'>
-      <ScrollView contentContainerStyle={{height: '100%'}}>
-        <View className='w-full justify-center items-center h-full px-4'>
+      <ScrollView contentContainerStyle={{}}>
+        <View className='w-full justify-center items-center min-h-[85vh] px-4'>
           <Image
             source={images.aldentePosLogo}
-            className='w-[300px] h-[150px] -mb-5'
+            className='w-[300px] h-[150px]'
             resizeMode='contain'
           />
           <Image
@@ -32,16 +32,13 @@ export default function HomeScreen() {
 
           <CustomButton
             title="Continue with Email"
-            handlePress={() => {}}
+            handlePress={() => router.push('/sign-in')}
             containerStyles='w-[50%] mt-8'
           />
+
         </View>
       </ScrollView>
       <StatusBar backgroundColor='#161622' style='light'/>
-      {/* <View className="flex-1 items-center justify-center">
-        <Text className="text-3xl font-pblack">Aldente POS</Text>
-        <Link href="/profile" style={{color:'blue'}}>Got to Profile</Link>
-      </View> */}
     </SafeAreaView>
   );
 }
