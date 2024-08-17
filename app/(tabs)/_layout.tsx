@@ -27,7 +27,7 @@ export default function TabLayout() {
 
   return (
     <>
-      <Text className="justify-center">Restaurant Name & Date/Time</Text>
+      {/* <Text className="justify-center">Restaurant Name & Date/Time</Text> */}
       <Tabs
         screenOptions={{
           tabBarActiveTintColor: 'gold',
@@ -49,7 +49,7 @@ export default function TabLayout() {
           }}
       >
         <Tabs.Screen
-          name="index"
+          name="menu"
           options={{
             title: 'Menu',
             tabBarLabel: '', // Custom label handled by TabIcon component
@@ -90,7 +90,6 @@ export default function TabLayout() {
           }}
         />
       </Tabs>
-      <Text className="text-2xl">Powered by Aldente Digitals</Text>
     </>
   );
 }

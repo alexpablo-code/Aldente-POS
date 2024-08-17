@@ -1,5 +1,5 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import {Text} from 'react-native';
+import {Text, View} from 'react-native';
 import { useFonts } from 'expo-font';
 import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
@@ -38,13 +38,17 @@ export default function RootLayout() {
   return (
     <>
       {/* ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme} */}
-      <Text>Header</Text>
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        {/* <Stack.Screen name="/search/[query]" options={{ headerShown: false }} /> */}
         <Stack.Screen name="profile"/>
         <Stack.Screen name="+not-found" />
       </Stack>
-      <Text>Footer</Text>
+      <View className='items-center p-1 bg-gray-400'>
+        <Text>Powered by Aldente Digitals</Text>
+      </View>
     </>
   );
 }

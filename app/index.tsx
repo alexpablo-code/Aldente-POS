@@ -2,7 +2,7 @@ import {ScrollView, View, Text, Image } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Link, Redirect, router } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { images } from '../../constants';
+import { images } from '../constants';
 import CustomButton from '@/components/CustomButton';
 
 export default function HomeScreen() {
@@ -12,7 +12,7 @@ export default function HomeScreen() {
         <View className='w-full justify-center items-center min-h-[85vh] px-4'>
           <Image
             source={images.aldentePosLogo}
-            className='w-[300px] h-[150px]'
+            className='w-[300px] h-[80px]'
             resizeMode='contain'
           />
           <Image
