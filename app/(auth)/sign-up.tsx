@@ -5,10 +5,11 @@ import { Link } from 'expo-router';
 import { images } from '../../constants';
 import FormField from '../../components/FormField';
 import CustomButton from '../../components/CustomButton';
+import {createUser} from '../../lib/appwrite';
 
 const SignUp = () => {
     const [form, setForm] = useState({
-        username:'',
+        restaurantName:'',
         email: '',
         password: '',
     })
@@ -16,7 +17,7 @@ const SignUp = () => {
     const [isSubmitting, setIsSubmitting] = useState(false)
 
     const submit = () => {
-
+        createUser();
     }
 
     return (
@@ -30,9 +31,9 @@ const SignUp = () => {
                     />
                     <Text className='text-2xl text-white text-semibold mt-10 font-psemibold'>Sign Up to Aldente POS</Text>
                     <FormField
-                        title="Username"
-                        value={form.username}
-                        handleChangeText={(e) => setForm({... form, username:e})}
+                        title="Restaurant Name"
+                        value={form.restaurantName}
+                        handleChangeText={(e) => setForm({... form, restaurantName:e})}
                         otherStyles="mt-10"
                     />
                     <FormField
