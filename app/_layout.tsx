@@ -5,6 +5,7 @@ import { SplashScreen, Stack } from 'expo-router';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 import { StatusBar } from "expo-status-bar";
+import GlobalProvider from '../context/GlobalProvider';
 
 // import { useColorScheme } from '@/hooks/useColorScheme';
 
@@ -36,19 +37,21 @@ export default function RootLayout() {
   if(!fontsLoaded && !error) return null;
 
   return (
-    <>
-      {/* ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme} */}
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="(auth)" options={{ headerShown: false }} />
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        {/* <Stack.Screen name="/search/[query]" options={{ headerShown: false }} /> */}
-        <Stack.Screen name="profile"/>
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <View className='items-center p-1 bg-gray-400'>
-        <Text>Powered by Aldente Digitals</Text>
-      </View>
-    </>
+    <GlobalProvider>
+      <>
+        {/* ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme} */}
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          {/* <Stack.Screen name="/search/[query]" options={{ headerShown: false }} /> */}
+          <Stack.Screen name="profile"/>
+          <Stack.Screen name="+not-found" />
+        </Stack>
+        <View className='items-center p-1 bg-gray-400'>
+          <Text>Powered by Aldente Digitals</Text>
+        </View>
+      </>
+    </GlobalProvider>
   );
 }

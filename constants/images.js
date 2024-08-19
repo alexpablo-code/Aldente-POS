@@ -8,5 +8,6 @@ import empty from "../assets/images/empty.png";
 import aldenteLogo from "../assets/images/aldente-logo.png";
 import aldentePosLogo from "../assets/images/aldente-pos-logo.png";
 import posCard from "../assets/images/pos-card.png"
+import aldenteIcon from "../assets/images/aldente_icon.png"
 
-export default { profile, thumbnail, cards, path, logo, logoSmall, empty, aldenteLogo, aldentePosLogo, posCard};
+export default { profile, thumbnail, cards, path, logo, logoSmall, empty, aldenteLogo, aldentePosLogo, posCard, aldenteIcon};
