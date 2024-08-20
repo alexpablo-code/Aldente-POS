@@ -1,13 +1,23 @@
-import React from 'react'
-import {View, Text, FlatList, Image} from 'react-native'
+import React, {useState} from 'react'
+import {View, Text, FlatList, Image, RefreshControl} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import {images} from '../../constants';
 import SearchInput from '../../components/SearchInput';
+import MenuLayout from '../../components/MenuLayout';
+import EmptyState from '../../components/EmptyState';
 
 const Menu = () => {
+    const [refreshing, setRefreshing] = useState(false);
+
+    const onRefresh = async () => {
+        setRefreshing(true);
+        //re call posts -> see if any new posts have been added in this case menu items
+        setRefreshing(false);
+    }
+
     return (
-        <SafeAreaView className='bg-primary'>
+        <SafeAreaView className='bg-primary h-full'>
             <FlatList
                 data={[{id:1}, {id:2}, {id:3}]}
                 keyExtractor={(item) => item.$id}
@@ -35,8 +45,20 @@ const Menu = () => {
                         </View>
 
                         <SearchInput/>
+
+                        <View className='w-full flex-1 pt-5 pb-8'>
+                            <Text className='text-gray-100 text-lg font-pregular mb-3'>Latest Items</Text>
+                            <MenuLayout categories={[{id:1}, {id:2}, {id:3}] ?? []}/>
+                        </View>
                     </View>
                 )}
+                ListEmptyComponent={() => (
+                    <EmptyState
+                    title="No Menu found"
+                    subtitle="Add items to your menu"
+                    />
+                )}
+                refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>}
             />
         </SafeAreaView>
     );

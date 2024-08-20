@@ -10,16 +10,14 @@ const SearchInput = ({title, value, placeholder, handleChangeText, otherStyles, 
                 <TextInput
                 className='text-base mt-0.5 text-white flex-1 font-pregular'
                 value={value}
-                placeholder={placeholder}
+                placeholder='Search for menu item'
                 placeholderTextColor='#7b7b8b'
                 onChangeText={handleChangeText}
                 secureTextEntry={title === 'Password' && !showPassword}
                 />
-                {title === 'Password' && (
-                    <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                        <Image source={!showPassword ? icons.eye : icons.eyeHide} className='w-8 h-8' resizeMode='contain'/>
-                    </TouchableOpacity>
-                )}
+                <TouchableOpacity>
+                    <Image source={icons.search} className='w-8 h-8' resizeMode='contain'/>
+                </TouchableOpacity>
             </View>
     );
 }
