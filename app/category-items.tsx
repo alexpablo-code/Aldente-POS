@@ -1,18 +1,20 @@
 import React, {useState, useEffect} from 'react'
 import {View, Text, FlatList, Image, RefreshControl, Alert} from 'react-native' 
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { router , useLocalSearchParams} from 'expo-router';
 
-import {images} from '../../constants';
-import SearchInput from '../../components/SearchInput';
-import MenuLayout from '../../components/MenuLayout';
-import EmptyState from '../../components/EmptyState';
-import useAppwrite from '../../lib/useAppwrite';
-import { getAllMenuItems } from '../../lib/appwrite';
-import { getAllMenuCategories } from '../../lib/appwrite';
-import CategoryCard from '../../components/CategoryCard';
+import {images} from '../constants';
+import SearchInput from '../components/SearchInput';
+import MenuLayout from '../components/MenuLayout';
+import EmptyState from '../components/EmptyState';
+import useAppwrite from '../lib/useAppwrite';
+import { getAllMenuItems } from '../lib/appwrite';
+import { getAllMenuCategories } from '../lib/appwrite';
+import FoodItemCard from '../components/foodItemCard';
 
-const Menu = () => {
-    const {data: menuCategories, refetch} = useAppwrite(getAllMenuCategories);
+const CategoryItems = () => {
+    const {data: categoryItems, refetch} = useAppwrite(getAllMenuItems);
+    const{categoryId, categoryName} = useLocalSearchParams();
 
     const [refreshing, setRefreshing] = useState(false);
 
@@ -24,26 +26,25 @@ const Menu = () => {
         setRefreshing(false);
     }
 
+    console.log(categoryItems[0])
+
     return (
         <SafeAreaView className='bg-primary h-full'>
             <FlatList
-                data={menuCategories}
+                data={categoryItems}
                 numColumns={3}
                 columnWrapperStyle={{gap:10, paddingHorizontal:12}}
                 contentContainerStyle={{gap:10, paddingBottom:20}}
                 keyExtractor={(item) => item.$id}
                 renderItem={({item}) =>(
-                    <CategoryCard item={item}/>
+                    <FoodItemCard item={item}/>
                 )}
                 ListHeaderComponent={() => (
                     <View className='my-6 px-4 space-y-6'>
                         <View className='justify-between items-start flex-row mb-6'>
                             <View>
-                                <Text className='font-pmedium text-sm text-gray-100'>
-                                    Welcome Back
-                                </Text>
                                 <Text className='text-2xl font-psemibold text-white'>
-                                    Taquiza
+                                    Category Name {categoryName}
                                 </Text>
                             </View>
                             <View className='mt-1.5'>
@@ -55,17 +56,11 @@ const Menu = () => {
                             </View>
                         </View>
 
-                        <SearchInput/>
-
-                        <View className='w-full flex-1 pt-5 pb-8'>
-                            <Text className='text-gray-100 text-lg font-pregular mb-3'>Latest Items</Text>
-                            <MenuLayout categories={[{id:1}, {id:2}, {id:3}] ?? []}/>
-                        </View>
                     </View>
                 )}
                 ListEmptyComponent={() => (
                     <EmptyState
-                    title="No Menu found"
+                    title="No items in this category found"
                     subtitle="Add items to your menu"
                     />
                 )}
@@ -75,4 +70,4 @@ const Menu = () => {
     );
 }
 
-export default Menu
+export default CategoryItems
