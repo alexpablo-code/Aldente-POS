@@ -1,11 +1,14 @@
 import React from 'react'
 import {View, Text, TouchableOpacity} from 'react-native'
-import { router} from 'expo-router';
+import { useRouter, useLocalSearchParams} from 'expo-router';
 
 const CategoryCard = ({item: {categoryName, categoryDescription, $id: categoryId}}) => {
 
+    const router = useRouter();
+    // const {categoryId, categoryName} = useLocalSearchParams();
+
     const handlePress =() => {
-        router.replace('/category-items',{categoryId, categoryName})
+        router.push({pathname:'/category-items',params:{categoryId, categoryName}})
     }
 
     return (

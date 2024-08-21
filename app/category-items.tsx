@@ -26,7 +26,6 @@ const CategoryItems = () => {
         setRefreshing(false);
     }
 
-    console.log(categoryItems[0])
 
     return (
         <SafeAreaView className='bg-primary h-full'>
@@ -44,7 +43,7 @@ const CategoryItems = () => {
                         <View className='justify-between items-start flex-row mb-6'>
                             <View>
                                 <Text className='text-2xl font-psemibold text-white'>
-                                    Category Name {categoryName}
+                                    {categoryName}
                                 </Text>
                             </View>
                             <View className='mt-1.5'>
