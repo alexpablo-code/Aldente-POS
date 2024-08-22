@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {View, Text, FlatList, Image, RefreshControl, Alert} from 'react-native' 
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useGlobalContext } from '../../context/GlobalProvider';
 
 import {images} from '../../constants';
 import SearchInput from '../../components/SearchInput';
@@ -8,11 +9,12 @@ import MenuLayout from '../../components/MenuLayout';
 import EmptyState from '../../components/EmptyState';
 import useAppwrite from '../../lib/useAppwrite';
 import { getAllMenuItems } from '../../lib/appwrite';
-import { getAllMenuCategories } from '../../lib/appwrite';
+import { getRestaurantMenuCategories } from '../../lib/appwrite';
 import CategoryCard from '../../components/CategoryCard';
 
 const Menu = () => {
-    const {data: menuCategories, refetch} = useAppwrite(getAllMenuCategories);
+    const {data: menuCategories, refetch} = useAppwrite(() => getRestaurantMenuCategories(user.$id));
+    const {isLoading, isLoggedIn, user} = useGlobalContext();
 
     const [refreshing, setRefreshing] = useState(false);
 
@@ -56,11 +58,6 @@ const Menu = () => {
                         </View>
 
                         <SearchInput/>
-
-                        <View className='w-full flex-1 pt-5 pb-8'>
-                            <Text className='text-gray-100 text-lg font-pregular mb-3'>Latest Items</Text>
-                            <MenuLayout categories={[{id:1}, {id:2}, {id:3}] ?? []}/>
-                        </View>
                     </View>
                 )}
                 ListEmptyComponent={() => (

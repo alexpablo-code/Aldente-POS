@@ -10,7 +10,7 @@ import EmptyState from '../components/EmptyState';
 import useAppwrite from '../lib/useAppwrite';
 import { getAllMenuItems } from '../lib/appwrite';
 import { getAllMenuCategories } from '../lib/appwrite';
-import FoodItemCard from '../components/foodItemCard';
+import FoodItemCard from '../components/FoodItemCard';
 
 const CategoryItems = () => {
     const {data: categoryItems, refetch} = useAppwrite(getAllMenuItems);

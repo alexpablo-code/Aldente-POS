@@ -1,10 +1,12 @@
-import { Tabs, Redirect } from 'expo-router';
+import { Tabs, Redirect, Link} from 'expo-router';
 import React from 'react';
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
 import {icons} from '../../constants';
-// import { Colors } from '@/constants/Colors';
-// import { useColorScheme } from '@/hooks/useColorScheme';
-import { StyleSheet, Text, View, Image } from "react-native";
+import {Text, View, Image, TouchableOpacity} from "react-native";
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter } from 'expo-router';
+import {signOut} from '../../lib/appwrite'
+import { useGlobalContext } from '../../context/GlobalProvider';
 
 const TabIcon = ({icon, color, name, focused}) => {
   return(
@@ -22,12 +24,38 @@ const TabIcon = ({icon, color, name, focused}) => {
   )
 }
 
+
 export default function TabLayout() {
+  const {user, setUser, setIsLoggedIn} = useGlobalContext();
+  const router = useRouter();
+
+  const logout = async () => {
+    await signOut();
+    setUser(null)
+    setIsLoggedIn(false)
+
+    router.replace('/sign-in')
+  }
   // const colorScheme = useColorScheme();
 
   return (
     <>
-      {/* <Text className="justify-center">Restaurant Name & Date/Time</Text> */}
+      <SafeAreaView className='bg-primary'>
+        {/* <Text className="justify-center">Restaurant Name & Date/Time</Text> */}
+        <View className='w-full justify-center items-between px-4'>
+          <Link push href='/profile' className='text-secondary justify-center text-lg'>Profile</Link>
+          <TouchableOpacity 
+            className='items-end'
+            onPress={logout}
+          >
+            <Image 
+            source={icons.logout}
+            resizeMode='contain'
+            className="w-8 h-8"
+            />
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
       <Tabs
         screenOptions={{
           tabBarActiveTintColor: 'gold',
@@ -84,7 +112,7 @@ export default function TabLayout() {
             tabBarIcon: ({ color, focused }) => (
               <View className="items-center justify-center gap-2">
                 <TabBarIcon name={focused ? 'checkbox' : 'checkbox-outline'} color={color} />
-                <Text className={`${focused ? 'font-psemibold': 'font-pregular'} text-xs`} style={{color:color}}>Open</Text>
+                <Text className={`${focused ? 'font-psemibold': 'font-pregular'} text-xs`} style={{color:color}}>Closed Orders</Text>
               </View>
             ),
           }}

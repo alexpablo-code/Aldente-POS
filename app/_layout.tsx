@@ -43,10 +43,10 @@ export default function RootLayout() {
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="(admin)" options={{ headerShown: false }} />
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="category-items" options={{ headerShown: false }} />
-          {/* <Stack.Screen name="/search/[query]" options={{ headerShown: false }} /> */}
-          <Stack.Screen name="profile"/>
+          <Stack.Screen name="search/[query]" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>
         <View className='items-center p-1 bg-gray-400'>

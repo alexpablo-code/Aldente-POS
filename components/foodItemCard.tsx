@@ -12,7 +12,7 @@ const FoodItemCard = ({item: {itemName, itemDescription, $id: categoryId, itemim
         <TouchableOpacity 
             onPress={handlePress}
             activeOpacity={0.7}
-            className={`bg-[#FFD700] h-[200px] w-[30%] rounded-xl justify-center items-center p-1 flex-1'}`}
+            className={`bg-[#FFD700] h-[200px] w-[20%] rounded-xl justify-center items-center p-1 flex-1'}`}
             >
             <Text 
             className={`text-primary font-psemibold text-xl`}>
