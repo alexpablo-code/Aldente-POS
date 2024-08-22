@@ -43,7 +43,10 @@ export default function TabLayout() {
       <SafeAreaView className='bg-primary'>
         {/* <Text className="justify-center">Restaurant Name & Date/Time</Text> */}
         <View className='w-full justify-center items-between px-4'>
-          <Link push href='/profile' className='text-secondary justify-center text-lg'>Profile</Link>
+          <View className='flex-row gap-2'>
+            <Link push href='/profile' className='text-secondary justify-center text-lg'>Profile</Link>
+            <Link push href='/products' className='text-secondary justify-center text-lg'>Products</Link>
+          </View>
           <TouchableOpacity 
             className='items-end'
             onPress={logout}

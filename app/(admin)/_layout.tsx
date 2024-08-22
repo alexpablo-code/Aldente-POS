@@ -21,6 +21,12 @@ const AdminLayout = () => {
                     }}
                 />
                 <Stack.Screen
+                    name="add-product"
+                    options={{
+                        headerShown: false,
+                    }}
+                />
+                <Stack.Screen
                     name="end-of-day"
                     options={{
                         headerShown: false,
