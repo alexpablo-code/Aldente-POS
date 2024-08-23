@@ -2,17 +2,19 @@ import React, {useState, useEffect} from 'react'
 import {View, Text, FlatList, Image, RefreshControl, Alert, TouchableOpacity} from 'react-native' 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter , useLocalSearchParams} from 'expo-router';
+import { useGlobalContext } from '../../context/GlobalProvider';
 
 import {images} from '../../constants';
 import SearchInput from '../../components/SearchInput';
 import EmptyState from '../../components/EmptyState';
 import useAppwrite from '../../lib/useAppwrite';
 import { getAllMenuItems } from '../../lib/appwrite';
-import { getAllMenuCategories } from '../../lib/appwrite';
-import FoodItemCard from '../../components/FoodItemCard';
+import { getRestaurantMenuCategories } from '../../lib/appwrite';
 
 const Products = () => {
-    const {data: categoryItems, refetch} = useAppwrite(getAllMenuItems);
+    const {data: menuCategories, refetch} = useAppwrite(() => getRestaurantMenuCategories(user.$id));
+    const {isLoading, isLoggedIn, user} = useGlobalContext();
+    const {data: categoryItems} = useAppwrite(getAllMenuItems);
     const{categoryId, categoryName} = useLocalSearchParams();
     const router = useRouter();
 
